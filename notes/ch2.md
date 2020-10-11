@@ -56,8 +56,8 @@ if(i)           //if的值将为true
   ```
   20    //十进制           024//八进制                0x14//十六进制                      
   ```  
-   - 十进制字面值是带符号数，在能容纳的情况下取`int`、`long`、`long long`中最小
-   - 八进制和十六进制字面值是带符号数或无符号数，在能容纳的情况下取`int`、`unsigned int`、`long`、`unsigned long`、`long long`、`unsigned long long`中最小  
+      - 十进制字面值是带符号数，在能容纳的情况下取`int`、`long`、`long long`中最小
+      - 八进制和十六进制字面值是带符号数或无符号数，在能容纳的情况下取`int`、`unsigned int`、`long`、`unsigned long`、`long long`、`unsigned long long`中最小  
 
  
  

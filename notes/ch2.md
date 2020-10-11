@@ -55,7 +55,7 @@ if(i)           //if的值将为true
  整形字面值常量可以用十进制、八进制（以0开头）、十六进制（以0x开头）表示  
  | 20 | 含义 | 最小尺寸|  
  |---|---|---|
-
+| `bool` | 布尔类型  | 8bits |
    - 十进制字面值是带符号数，在能容纳的情况下取`int`、`long`、`long long`中最小  
 八进制和十六进制字面值是带符号数或无符号数，在能容纳的情况下取`int`、`unsigned int`、`long`、`unsigned long`、`long long`、`unsigned long long`中最小  
 

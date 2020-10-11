@@ -52,16 +52,47 @@ if(i)           //if的值将为true
  ### 字面值常量
  字面值常量（literal constant），“字面值”是指只能用它的值称呼它，“常量”是指其值不能修改。每个字面值都有相应的类型，3.14是`double`型，2是`int`型。只有内置类型存在字面值  
  - **1.整型字面值**  
- 整形字面值常量可以用十进制（如：24）、八进制（以0开头，如：024）、十六进制（以0x开头，如：0x24）表示  
+ 用十进制（如：24）、八进制（以0开头，如：024）、十六进制（以0x开头，如：0x24）表示  
    - 十进制字面值是带符号数，在能容纳的情况下取`int`、`long`、`long long`中最小  
      - 形如-42的十进制字面值，那个负号并不在字面值之内，它的作用仅仅对字面值取负而已
    - 八进制和十六进制字面值是带符号数或无符号数，在能容纳的情况下取`int`、`unsigned int`、`long`、`unsigned long`、`long long`、`unsigned long long`中最小  
-   - 在数值后加后缀可指定类型  
+   - 在数值后加**后缀**可指定类型 
      - u或U：`unsigned int`、`unsigned long`、`unsigned long long`中最小  
      - l或L：`long`、`unsigned long`、`long long`、`unsigned long long`中最小  
      - ll或LL：`long long`、`unsigned long long`中最小  
      - U可以和L混用，如UL或LU：`unsigned long`、`unsigned long long`中最小  
-
+- **2.浮点数字面值**  
+用十进制或科学计数法（指数用E或e）表示，默认为`double`
+  - 在数值后加**后缀**可指定类型  
+    - f或F：`float`
+    - l或L；`long double`  
+- **3.字符和字符串字面值**  
+  - 由单引号括起来的一个字符称为char型字面值，如；'a'
+  - 由双引号括起来的零个或多个字符称为字符串字面值，如："Hello"
+    - 字符串字面值实际长度比内容多1，编译器自动在结尾处添加空字符（'\0'）
+  - 在字符前加**前缀**可指定类型（*如：L‘a’  u8"hi!"）  
+    - u：char16_t  
+    - U：char32_t  
+    - L：wchar_t  
+    - u8：char（UTF-8,用8 bit编写一个Unicode字符，仅用于字符串字面常量）
+- **4.布尔字面值**
+true和false  
+- **5.转义序列**  
+下列转义序列被当作一个字符使用  
+| 类型 | 含义 | 最小尺寸|
+|---|---|---|
+| `bool` | 布尔类型  | 8bits |
+| `char`| 字符 | 8bits |
+| `wchar_t` | 宽字符 | 16bits |
+| `char16_t` | Unicode字符 | 16bits |
+| `char32_t` | Unicode字符 | 32bits |
+| `short` | 短整型 | 16bits |
+| `int` | 整型 | 16bits  |
+| `long` | 长整型 | 32bits |
+| `long long` | 长整型 | 64bits  |
+| `float` | 单精度浮点数 | 6位有效数字 |
+| `double` | 双精度浮点数 | 10位有效数字 |
+| `long double` | 扩展精度浮点数 | 10位有效数字 |
  
  
  

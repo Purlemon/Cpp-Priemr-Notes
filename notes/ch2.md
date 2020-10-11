@@ -35,8 +35,7 @@
 - 非布尔型赋给布尔型，初始值为0则结果为false，否则为true。  
 ```cpp
 int i=42;
-if(i)//if的值将为true
-i=0;
+if(i)           //if的值将为true
 ```
 - 布尔型赋给非布尔型，初始值为false结果为0，初始值为true结果为1。
 

@@ -23,4 +23,4 @@
 ### 带符号类型和无符号类型  
 - `int``short``long``long long`都是带符号的
 - 在这些类型名称前添加`unsigned`就可以得到无符号类型
-- `unsigned int`可以缩写为**`unsigned`**  
+- `unsigned int`可以缩写为`**unsigned**`  

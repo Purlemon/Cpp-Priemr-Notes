@@ -39,4 +39,6 @@ if(i)           //if的值将为true
   i=0；
 ```
 - 布尔型赋给非布尔型，初始值为false结果为0，初始值为true结果为1。
-
+- 超出范围的值赋给无符号类型，结果是初始值对无符号类型表示数值总数取模后的余数  
+  （如果是负数，[会直接使用负数的补码表示结果](https://blog.csdn.net/Songbai_Pu/article/details/9172689)，如：将-1赋给8 bit的`unsigned char`结果是255）  
+ - 超出范围的值赋给带符号数，结果是**未定义的（undefined）**

@@ -18,7 +18,8 @@
 | `double` | 双精度浮点数 | 10位有效数字 |
 | `long double` | 扩展精度浮点数 | 10位有效数字 |
 - 可寻址的最小内存块称为“字节（byte）”，储存的基本单元称为“字（word）”  
-- 1 byte=8 bit  1 word= 32 bit
+  - 1 byte=8 bit  
+  - 1 word= 32 bit
 
 ### 带符号类型和无符号类型  
 - `int`、`short`、`long`、`long long`都是带符号的，在这些类型名称前添加`unsigned`就可以得到无符号类型

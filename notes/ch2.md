@@ -164,7 +164,7 @@ cout << i;              //错误，无法在for语句外访问i
   int &refVal = ival;           //refVal初始化（是ival的另一个名字）
   int &refVal;                  //错误，引用必须被初始化
   double dval = 3.14;
-  int &refVal1 = dval;          //错误，此处引用类型的初始值必须是`int`型对象
+  int &refVal1 = dval;          //错误，此处引用类型的初始值必须是int型对象
   //允许在一条语句中定义多个引用
   int i = 1024, i2 = 2048;
   int &r = i, r2 = i2;

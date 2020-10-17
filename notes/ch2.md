@@ -230,5 +230,6 @@ cout << i;              //错误，无法在for语句外访问i
      int *p = &i;               //p是一个int型指针
      int *&r = p;               //r是对指针p的引用
  ```  
+ 
  ## const限定符
  

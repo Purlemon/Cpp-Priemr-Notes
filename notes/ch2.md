@@ -316,14 +316,33 @@ SI等价于Sales_item
 **最好不要使用对复合类型定义别名**，会引发奇奇怪怪的错误  
 
 ### auto类型说明符
-- auto类型说明符：让编译器自动推断类型
-- `int i = 0, &r = i; auto a = r;` 推断a的类型是int
-- 会忽略顶层const。
+- 让编译器**自动推断类型**
+  - `int i = 0, &r = i; auto a = r;` 推断a的类型是int
+- **auto定义变量必须有初始值**
+- 会忽略顶层const
   - 若想声明顶层const，需要自己加const  
 ```cpp
   const int ci = 1; 
   const auto f = ci;            //ci的推断类型是int，f是const int
 ```
+
+### decltype类型指示符  
+- 让编译器分析表达式的类型，却**不计算表达式的值**
+  - `decltype(f()) sum = x; `推断sum的类型是函数f的返回类型  
+- 不会忽略顶层const  
+- 如果表达式是解引用，则推断为引用类型  
+  - `int *p;`decltype(\*p)为`int&`
+- 给变量加上一层或多层括号，编译器就会把它当成表达式。**变量加上括号为引用类型**  
+```cpp
+decltype((i)) d;                //错误：d是int&，必须初始化  
+decltype(i) e;                  //正确：e是一个（未初始化的）int  
+```  
+**decltyppe((variable))结果永远是引用**  
+
+
+
+
+
 
 
 

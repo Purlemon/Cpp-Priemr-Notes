@@ -306,4 +306,17 @@ constexpr int *pi = &i;                 //pi是常量指针，指向整数i
 constexpr const int *pj = &j;           //pj是常量指针，指向整型常量j
 ```
 
+## 处理类型
+
+### 类型别名
+- 传统别名：使用typedef来定义类型的同义词，*如：`typedef double wages;`*  
+wages等价于double，`wages pi = 3.14;`
+- 新标准别名：别名声明（alias declaration）： `using SI = Sales_item;`  
+SI等价于Sales_item
+- 最好不要使用对复合类型定义别名，会引发奇奇怪怪的错误  
+
+
+
+
+
 

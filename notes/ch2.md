@@ -337,12 +337,26 @@ SI等价于Sales_item
 decltype((i)) d;                //错误：d是int&，必须初始化  
 decltype(i) e;                  //正确：e是一个（未初始化的）int  
 ```  
-**decltyppe((variable))结果永远是引用**  
+**decltype((variable))结果永远是引用**  
 
+## 编写自己的头文件  
 
+- 头文件通常包含哪些只能被定义一次的实体：类、`const`和`constexpr`变量
+预处理器概述：
 
+- 预处理器（preprocessor）：确保头文件多次包含仍能安全工作。
+- 当预处理器看到#include标记时，会用指定的头文件内容代替#include
+- 头文件保护符（header guard）：头文件保护符依赖于预处理变量的状态：已定义和未定义  
+**建议习惯性加上**
+```cpp
+//在.h文件中
+#ifndef 头文件名
+#define 头文件名
 
+···头文件内容···
 
+#endif
+```
 
 
 

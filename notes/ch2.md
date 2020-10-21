@@ -312,11 +312,18 @@ constexpr const int *pj = &j;           //pj是常量指针，指向整型常量
 - 传统别名：使用typedef来定义类型的同义词，*如：`typedef double wages;`*  
 wages等价于double，`wages pi = 3.14;`
 - 新标准别名：别名声明（alias declaration）： `using SI = Sales_item;`  
-SI等价于Sales_item
-- 最好不要使用对复合类型定义别名，会引发奇奇怪怪的错误  
+SI等价于Sales_item  
+**最好不要使用对复合类型定义别名**，会引发奇奇怪怪的错误  
 
-
-
+### auto类型说明符
+- auto类型说明符：让编译器自动推断类型
+- `int i = 0, &r = i; auto a = r;` 推断a的类型是int
+- 会忽略顶层const。
+  - 若想声明顶层const，需要自己加const  
+```cpp
+  const int ci = 1; 
+  const auto f = ci;            //ci的推断类型是int，f是const int
+```
 
 
 

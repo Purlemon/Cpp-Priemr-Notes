@@ -285,8 +285,25 @@ int *const p2 = &ival;                  //错误：p2是常量指针，不是指
 const int *const p3 = &ival;            //正确：p3是指向常量对象的常量指针  
 ```
 
- 
+ ### 顶层const
+- 顶层const：指针本身是个常量
+- 底层const：指针指向的对象是个常量。拷贝时严格要求相同的底层const资格，或者将非常量对象拷贝为常量  
 
-
+### constexpr和常量表达式
+- 常量表达式：指值不会改变，且在编译过程中就能得到计算结果的表达式，*如：字面值*
+- constexpr类型：允许将变量声明为constexpr类型以便由编译器来验证变量的值是否是一个常量的表达式。
+声明为constexpr的变量一定是一个常量，而且必须用常量表达式初始化
+  - 普通函数无法作为constexpr变量的初始值，只能用constexpr函数初始化  
+- constexpr指针  
+  - 初始值必须是`0`或`nullptr`，或某个储存于固定地址中的对象
+  - 函数体内的变量一般存于非固定地址，所以**只能用定义在函数体之外的对象初始化constexpr指针**
+  - constexpr指针一定为顶层const（常量指针）
+```cpp  
+int i = 0;
+const int j = 42;
+//i，j必须声明在函数体之外  
+constexpr int *pi = &i;                 //pi是常量指针，指向整数i
+constexpr const int *pj = &j;           //pj是常量指针，指向整型常量j
+```
 
 

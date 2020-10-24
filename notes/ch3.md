@@ -52,3 +52,34 @@ string s1 = "world";
 string s2 = "hello" + ",";                  //错误：两个对象都不是string
 string s3 = s1 + "," + "world";             //正确：等价于string s3 = (s1 + ",") + "world";    
 ```
+
+### 处理string对象中的字符
+
+- **ctype.h 与 cctype**：C++将c的标准库的名称去掉`.h`，前面加`c`
+
+- `cctype`头文件中定义了一组标准函数：
+
+| 函数 | 解释 |
+|-----|-----|
+| `isalnum(c)` | 当`c`是字母或数字时为真 |
+| `isalpha(c)` | 当`c`是字母时为真 |
+| `iscntrl(c)` | 当`c`是控制字符时为真 |
+| `isdigit(c)` | 当`c`是数字时为真 |
+| `isgraph(c)` | 当`c`不是空格但可以打印时为真 |
+| `islower(c)` | 当`c`是小写字母时为真 |
+| `isprint(c)` | 当`c`是可打印字符时为真 |
+| `ispunct(c)` | 当`c`是标点符号时为真 |
+| `isspace(c)` | 当`c`是空白时为真（空格、横向制表符、纵向制表符、回车符、换行符、进纸符） |
+| `isupper(c)` | 当`c`是大写字母时为真 |
+| `isxdigit(c)` | 当`c`是十六进制数字时为真 |
+| `tolower(c)` | 当`c`是大写字母，输出对应的小写字母；否则原样输出`c` |
+| `toupper(c)` | 当`c`是小写字母，输出对应的大写字母；否则原样输出`c` |
+
+- 遍历字符串：使用**范围for**（range for）语句： `for (auto c: str)`，或者 `for (auto &c: str)`使用引用直接改变字符串中的字符
+  - 使用auto更容易保证`：`两端类型一致
+```cpp
+string str("something");
+for (auto c : str)                  //对于str中的每一个字符
+  cout << c <<endl;                 //输出当前字符，后面紧跟一个换行符
+```
+- 通过下标运算符`[]`访问单个字符，`s[0]`为第一个字符

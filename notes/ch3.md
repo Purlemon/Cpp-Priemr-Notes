@@ -76,7 +76,7 @@ string s3 = s1 + "," + "world";             //正确：等价于string s3 = (s1 
 | `toupper(c)` | 当`c`是小写字母，输出对应的大写字母；否则原样输出`c` |
 
 - 遍历字符串：使用**范围for**（range for）语句： `for (auto c: str)`，或者 `for (auto &c: str)`使用引用直接改变字符串中的字符
-  - 使用auto更容易保证`：`两端类型一致（这里c是`char`）
+  - 使用auto更容易保证`c`的类型正确（这里c是`char`）
 ```cpp
 string str("something");
 for (auto c : str)                  //对于str中的每一个字符

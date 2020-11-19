@@ -91,7 +91,7 @@ cout << sizeof(A)/sizeof(*A);       //输出3，为数组大小
   - 用引用初始化数组
 - 允许指向常量的指针和引用转换为指向非常量
 ### 显式类型转换
-`cast-name<type>(expression)`：转换指针要将`*`写在`<>`里面
+`cast-name<type>(expression)`：转换为指针要将`*`写在`<>`里面
 - 算术类型转算术类型，指针类型转指针类型等
   - **static_cast**：任何明确定义的类型转换，只要不包含底层const，都可以使用，   *如： `int i; double slope = static_cast<double>(i);`*
   - **const_cast**：只能改变运算对象的底层const，一般可用于去除const性质，   *如： `const char *pc; char *p = const_cast<char*>(pc)`*

@@ -56,4 +56,15 @@ for (auto beg = v.begin(), end = v.end(); beg != v.end(); ++beg)
 
 - **break**：`break`语句负责终止离它最近的`while`、`do while`、`for`或者`switch`语句，并从这些语句之后的第一条语句开始继续执行
 - **continue**：终止最近的循环中的当前迭代并立即开始下一次迭代。只能在`while`、`do while`、`for`循环的内部
-
+- **goto**：`goto lable; lable: return`无条件跳转到同一函数内的带标签语句
+  - 标签标示符可以和其他实体标示符同名
+  - `goto`语句和转向的语句位于同一函数内
+```cpp
+  if(error0_occur){
+      goto err_exit;
+  }
+  return h;
+err_exit:
+  CloseHandle(h);
+  return nullptr;
+```

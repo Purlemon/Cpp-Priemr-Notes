@@ -60,7 +60,8 @@ for (auto beg = v.begin(), end = v.end(); beg != v.end(); ++beg)
   - 标签标示符可以和其他实体标示符同名
   - `goto`语句和转向的语句位于同一函数内
 ```cpp
-  if(error0_occur){
+//如果error_occur为假，返回h；否则跳转到err_exit，调用CloseHandle(h)并返回nullptr
+  if(error_occur){
       goto err_exit;
   }
   return h;

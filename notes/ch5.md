@@ -32,7 +32,7 @@ switch (ch) {
 ### while语句
 - 条件部分是一个表达式或一个**带初始化的**变量声明，*如：`while(int i)//错误：必须包含初始化`*
 - 定义在条件部分或循环体内的变量每次迭代都经历从创建到销毁的过程
-- `do while`语句：先执行循环体，再检查条件
+- **`do while`语句**：先执行循环体，再检查条件
 
 ### for语句
 - `for`语句可以省略掉 `init-statement`， `condition`和 `expression`的任何一个；**甚至全部**
@@ -49,7 +49,7 @@ for(int i = 0, int j = 0;;)       //错误
 //等价于如下传统for
 for (auto beg = v.begin(), end = v.end(); beg != v.end(); ++beg) 
 {//由于预存了end()，添加/删除元素可能使其失效     
-auto r = *beg;
+  auto r = *beg;
 }
 ```
 ## 跳转语句

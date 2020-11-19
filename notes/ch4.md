@@ -96,3 +96,4 @@ cout << sizeof(A)/sizeof(*A);       //输出3，为数组大小
   - **static_cast**：任何明确定义的类型转换，只要不包含底层const，都可以使用，   *如： `int i; double slope = static_cast<double>(i);`*
   - **const_cast**：只能改变运算对象的底层const，一般可用于去除const性质，   *如： `const char *pc; char *p = const_cast<char*>(pc)`*
 - **reinterpret_cast**：任意类型转换，   *如：算术转指针`int *ip; char *pc = reinterpret_cast<char*>ip`*
+- 旧式强制类型转换：`type (expr)``(type) exper`根据类型行为与上述三种类似（**不推荐**）

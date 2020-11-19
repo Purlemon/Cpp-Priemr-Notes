@@ -92,6 +92,6 @@ cout << sizeof(A)/sizeof(*A);       //输出3，为数组大小
 - 允许指向常量的指针和引用转换为指向非常量
 ### 显式类型转换
 - 算术类型转算术类型，指针类型转指针类型等
-  - **static_cast**：任何明确定义的类型转换，只要不包含底层const，都可以使用，*如： `double slope = static_cast<double>(j);`*
-  - **const_cast**：只能改变运算对象的底层const，一般可用于去除const性质。 `const char *pc; char *p = const_cast<char*>(pc)`
-- **reinterpret_cast**：任意类型转换，如算术转指针
+  - **static_cast**：任何明确定义的类型转换，只要不包含底层const，都可以使用，   *如： `int i; double slope = static_cast<double>(i);`*
+  - **const_cast**：只能改变运算对象的底层const，一般可用于去除const性质，   *如： `const char *pc; char *p = const_cast<char*>(pc)`*
+- **reinterpret_cast**：任意类型转换，   *如：算术转指针`int *ip; char *pc = reinterpret_cast<char*>ip`*

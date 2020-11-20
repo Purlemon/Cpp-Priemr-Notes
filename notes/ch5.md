@@ -69,3 +69,40 @@ err_exit:
   CloseHandle(h);
   return nullptr;
 ```
+## try语句块和异常处理
+
+- **throw表达式**：异常检测部分使用 `throw`表达式来表示它遇到了无法处理的问题
+- **try语句块**：以 `try`关键词开始，以一个或多个 `catch`字句结束。 `try`语句块中的代码抛出的异常通常会被某个 `catch`捕获并处理。 `catch`子句也被称为**异常处理代码**
+  - `catch`一旦完成，跳转到最后一个`catch`后的语句
+  - 如果没有`try`发生异常，程序会自动调用`terminate`函数并终止执行
+```cpp
+//try/catch语法
+try
+{
+   // 保护代码
+}catch( ExceptionName e1 )
+{
+   // catch 块
+}catch( ExceptionName e2 )
+{
+   // catch 块
+}catch( ExceptionName eN )
+{
+   // catch 块
+}
+```
+- **异常类**：用于在 `throw`表达式和相关的 `catch`子句之间传递异常的具体信息
+![image](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/images/%E5%BC%82%E5%B8%B8%E7%B1%BB.png)
+```cpp
+//示例
+int x, y;
+cin >> x >> y;
+try {
+    if (x == y)
+        throw runtime_error("same");		//如果x，y相同，抛出runtime_error异常
+    cout << x + y << endl;
+}catch(runtime_error err){			//捕获异常，输出异常内容
+    cout << err.what() << endl;
+}						//输入1，2，输出3；输入1，1，输出same
+```
+参考：[C++异常处理|菜鸟教程](https://www.runoob.com/cplusplus/cpp-exceptions-handling.html)

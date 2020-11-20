@@ -92,7 +92,10 @@ try
 }
 ```
 - **异常类**：用于在 `throw`表达式和相关的 `catch`子句之间传递异常的具体信息
-![image](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/images/%E5%BC%82%E5%B8%B8%E7%B1%BB.png)
+  - `exception` `bad_alloc` `bad_cast`只能默认初始化，不允许提供初始值
+  - 其他类需要用`string` 或C风格字符串初始化（提供含有错误相关的信息）
+  - `what()` 成员函数没有参数，返回`const char*`。如果异常类有字符串初始值，返回该字符串；否则，内容由编译器决定
+  ![image](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/images/%E5%BC%82%E5%B8%B8%E7%B1%BB.png)
 ```cpp
 //示例
 int x, y;

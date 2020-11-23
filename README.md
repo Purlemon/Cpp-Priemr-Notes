@@ -6,5 +6,6 @@
   - 第3章：[字符串、向量和数组](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/notes/ch3.md)
   - 第4章：[表达式](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/notes/ch4.md)
   - 第5章：[语句](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/notes/ch5.md)
+  - 第6章：[函数](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/notes/ch6.md)
 ## 参考
 - [《C++ Primer 中文版（第 5 版）》学习仓库，包括笔记和课后练习答案](https://github.com/applenob/Cpp_Primer_Practice)

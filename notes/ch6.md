@@ -54,3 +54,114 @@
  void fdn(int i);               //错误：不能重载，可以传入相同类型的参数
  ```
 - 形参使用常量引用可以**传递字面值或表达式**作为参数，但引用不行
+
+### 数组形参
+实际上传递的是指向数组首元素的指针
+```cpp
+//三种等价
+void print(int* arr);
+void print(int arr[]);
+void print(int arr[10]);        //本质是传指针，所以10这个维度会自动被编译器忽视
+```
+- 管理指针（数组）形参
+  - 1.数组本身包含结束标记，*如：C风格字符串*
+  - 2.传递数组首元素和尾后元素指针`void print(begin(arr), end(arr))`
+  - 3.显式传递数组大小`void print(int arr[], size_t size)`
+- 数组引用形参
+```cpp
+//形参是数组的引用，所以维度是类型的一部分
+void print(int (&arr)[10])
+{
+    for (auto i : arr)
+        cout << i;
+}
+//限制了函数的可用性，只能传递大小为10的数组
+int j[2] = {0, 1};
+print(j);             //错误：数组大小只能为10
+```
+- 传递多维数组
+实际上是传递指向数组的指针，所以数组第二维（以及后面所有维度）的大小都不能省略
+```cpp
+//三种等价
+void print(int (*matrix)[10], int row_size);
+void print(int matrix[][10], int row_size);
+void print(int matrix[5][10], int row_size);      //编译器会忽略5这个第一维度
+```
+### 含有可变形参的函数
+所有实参类型相同，数量不定，模板类型`initializer_list`
+
+| 操作 | 解释 |
+|-----|-----|
+| `initializer_list<T> lst;` | 默认初始化；`T`类型元素的空列表 |
+| `initializer_list<T> lst{a,b,c...};` | `lst`的元素数量和初始值一样多；`lst`的元素是对应初始值的副本；列表中的元素是`const`。 |
+| `lst2(lst)` | 拷贝或赋值一个`initializer_list`对象不会拷贝列表中的元素；拷贝后，原始列表和副本共享元素。 |
+| `lst2 = lst` | 同上 |
+| `lst.size()` | 列表中的元素数量 |
+| `lst.begin()` | 返回指向`lst`中首元素的指针 |
+| `lst.end()` | 返回指向`lst`中微元素下一位置的指针 |
+- `initializer_list`对象是常量
+- 向`initializer_list`形参传递值的序列，用花括号
+
+```cpp
+void err_msg(initializer_list<string> il)          //形参是string序列       
+{
+    for (auto beg = il.begin(); beg != il.end(); ++ beg)
+        cout << *beg << " ";
+}
+string x = "jkl";
+err_msg({"abc", "efg", x});                         //用{}传入实参序列
+```
+## 返回类型和return语句
+
+### 无返回值函数
+
+- 没有返回值的 `return`语句只能用在返回类型是 `void`的函数中
+- 返回 `void`的函数不要求非得有 `return`语句
+- 可以在`void`函数中间位置用`return`提前退出
+
+### 有返回值函数
+
+- `return`语句的返回值的类型必须和函数的返回类型相同，或者能够**隐式地**转换成函数的返回类型
+- 值的返回：返回的值用于初始化调用点的一个**临时量**，该临时量就是函数调用的结果
+- **不要返回局部对象的引用或指针**：函数调用后内部空间被销毁
+- 调用一个**返回引用**的函数得到**左值**，其他返回类型得到右值
+- **列表初始化返回值**：函数可以返回花括号包围的值的列表
+  - 返回内置类型，花括号只能包含一个值，且该值空间不应该大于目标类型空间
+  - 返回类类型，由类本身定义初始值如何使用
+```cpp
+string x = "jkl";
+vector<string> process()
+{
+    return {"abc", "efg", x};
+}
+```
+- 主函数main的返回值：如果结尾没有`return`，编译器将隐式地插入一条返回0的`return`语句。返回0代表执行成功
+
+### 返回数组指针或引用
+无法返回数组，用返回数组指针或引用代替
+```cpp
+int arr[10];
+int *p1[10];            //p1是一个数组，含有10个int类型指针
+int (*p2)[10] = &arr;   //p2是一个指针，指向含有10个int类型的数组arr
+int (&r)[10] = arr;     //r是一个引用，与含有10个int类型的数组arr绑定
+int (*func1())[10];     //func1返回一个指针，指向含有10个int类型数组
+int (&func2())[10];     //func2返回一个含有10个int类型的数组的引用
+```
+- 使用尾置返回类型
+在形参列表后以`->`开头表示返回类型，在原来的位置放置`auto`
+```cpp
+auto func3() -> int(*)[10];           //func3()返回一个一维数组指针，含有10个int类型
+//不要返回指向二维数组的指针，数据会乱，不知道为什么
+auto func4() -> int(&)[10];           //func4()返回一个一维数组引用，含有10个int类型
+auto func5() -> int(&)[5][10];        //func5()返回一个二维数组引用，含有5行10列int类型
+```
+- 使用decltype
+注：`decltype`对数组的结果是数组
+```cpp
+int odd[5] = {1, 3, 5, 7, 9};
+decltype(odd) *func6()
+{
+    return &odd;        //返回一个指针，指向含有5个int类型的数组
+}
+```
+## 函数重载

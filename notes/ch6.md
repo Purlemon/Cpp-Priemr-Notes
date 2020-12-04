@@ -172,3 +172,48 @@ decltype(odd) *func6()
   - 一个有顶层const的形参和没有它的函数无法区分，*如：`int lookup(int* const)`和 `int lookup(int*)`无法区分*
   - 相反，是否有某个底层const形参可以区分，*如`int lookup(int*)`和 `int lookup(const int*)`可以区分*
 - **重载和作用域**：若在内层作用域中声明名字，它将隐藏外层作用域中声明的同名实体，在不同的作用域中无法重载函数名
+
+## 特殊用途语言特性
+
+### 默认实参
+
+- `string screen(int ht = 24, int wid = 80, char backgrnd = ' ');`
+- 一旦某个形参被赋予了默认值，那么它之后的形参都必须要有默认值
+- 函数可以被多次声明，但默认实参只能被声明一次
+- 局部变量不能作为默认实参
+- 调用默认实参，只需在调用函数时省略该实参
+  - 从第一个默认实参开始调用
+```cpp
+screen(66);                     //等价于screen(66, 80, ' ');
+screen(66, 256);                //等价于screen(66, 256, ' ');
+screen(66, 256, '#');           //等价于screen(66, 256, '#');
+```
+
+### 内联（inline）函数
+
+- 普通函数的缺点：调用函数比求解等价表达式要慢得多。
+- `inline`函数可以避免函数调用的开销，可以让编译器在编译时**内联地展开**该函数。
+- `inline`函数应该在头文件中定义。
+
+### constexpr函数
+
+- 指能用于常量表达式的函数。
+- `constexpr int new_sz() {return 42;}`
+- 函数的返回类型及所有形参类型都要是字面值类型。
+- `constexpr`函数应该在头文件中定义。
+
+### 调试帮助
+
+- `assert`预处理宏（preprocessor macro）：`assert(expr);`
+
+开关调试状态：
+
+`CC -D NDEBUG main.c`可以定义这个变量`NDEBUG`。
+
+```cpp
+void print(){
+    #ifndef NDEBUG
+        cerr << __func__ << "..." << endl;
+    #endif
+}
+```

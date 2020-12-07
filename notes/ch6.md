@@ -237,10 +237,36 @@ void print(){
 - 如果重载函数的区别是引用或指针形参含有`const`，编译器将根据实参是否是常量选择
 
 ## 函数指针
-
-- **函数指针**：是指向函数的指针。
-- `bool (*pf)(const string &, const string &);` 注：两端的括号不可少。
-- **函数指针形参**：
-  - 形参中使用函数定义或者函数指针定义效果一样。
-  - 使用类型别名或者`decltype`。
-- **返回指向函数的指针**：1.类型别名；2.尾置返回类型。
+ **函数指针**：是指向函数的指针
+ ### 使用函数指针
+- 函数名作为一个值时，自动被转换为指针
+```cpp
+bool lengthCompare(const string&, const string&);  //函数声明
+bool (*pf)(const string &, const string &);        //函数指针声明
+pf = lengthCompare;                                //pf指向名为lenghtCompare的函数
+pf = &lengthCompare;                               //和上面等价
+```
+- 可以直接使用指向函数的指针调用函数，无需解引用
+```cpp
+//下面三种等价
+bool b1 = pf("hello", "world");
+bool b2 = (*pf)("hello", "world");
+bool b3 = lengthCompare("hello", "world");
+```
+- 不同函数指针之间无法转换
+### 重载函数指针
+- 指针类型必须与重载函数其中一个精确匹配
+### 函数指针形参
+- 函数实参会自动转换为函数指针
+```cpp
+void test1(bool pf(const string&, const string&));            //函数类型作为形参，自动转换为函数指针形参
+void test2(bool (*pf)(const string&, const string&));         //和上面等价
+test1(lengthCompare);                                         //lengthCompare()作为test1的实参
+```
+- 如果函数指针无实参，其指向的函数不会被调用
+### 返回函数指针
+- **必须把返回类型写成函数指针形式，不能返回函数**
+```cpp
+//使用尾置返回类型
+auto f1(int) -> int (*)(int*, int);     //f1返回一个指向以(int* ,int)为形参的返回int的函数
+```

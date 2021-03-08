@@ -24,11 +24,11 @@ int Student::GetName() {return name;}   //GetName为Student类中的函数定义
 ```
 ### 返回`this`对象的函数
 ```cpp
-Student& Add(Student& S1) {
-//将两个Student的age相加，之后返回调用这个函数的对象
+Student& Add(Student& S1)
+{//将两个Student的age相加，之后返回调用这个函数的对象
 age += S1.age;
 return *this;
- }
+}
 ```
 ### 类的构造函数
 - 不能被声明为`const`

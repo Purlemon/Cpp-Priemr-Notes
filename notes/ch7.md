@@ -29,3 +29,11 @@ int Student::GetName() {return name;}   //GetName为Student类中的函数定义
 	return *this;
   }//将两个Student的age相加，之后返回调用这个函数的对象
 ```
+### 类的构造函数
+- 不能被声明为`const`
+- 没有返回值
+- 只有在没有任何构造函数时才存在默认构造函数；如果定义了一些其他的构造函数，除非再定义默认构造函数，否则类将没有默认构造函数
+```cpp
+Student() = default;     //默认构造函数
+Student(int a, string s): age(a), name(s) { }   //构造函数初始值列表
+```

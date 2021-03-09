@@ -52,3 +52,15 @@ Student(int a, string s): age(a), name(s) { }   //构造函数初始值列表
 - 友元的声明以关键字 `friend`开始。 `friend Sales_data add(const Sales_data&, const Sales_data&);`表示非成员函数`add`可以访问类的非公有成员。
 - 通常将友元声明成组地放在**类定义的开始或者结尾**。
 
+
+## 类的其他特性
+
+- 成员函数作为内联函数 `inline`：
+  - **定义**在类内部的函数是**自动内联**的。
+  - 在类外部定义的成员函数，也可以在声明时显式地加上 `inline`。
+- **可变数据成员**`mutable` ：
+  - `mutable int access_ctr;`
+  - 永远不会是`const`，即使它是`const`对象的成员。
+- 类内初始值
+  - 必须用`=`或`{}`
+- 类成员类型不能是自己，但可以是自身的引用或指针

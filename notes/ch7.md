@@ -74,5 +74,21 @@ Student(int a, string s): age(a), name(s) { }   //构造函数初始值列表
 - 类中的**类型名定义**都要放在一开始。
 
 ## 构造函数再探
+- `const`或者引用类型的数据，只能用列表初始化，不能在构造函数体中赋值。
+- 成员初始化顺序与在类定义中出现的顺序一致
 
+### 委托构造函数
+```cpp
+class Sales_data {
+public:
+	//非委托构造函数
+	Sales_data(string s, int cut, double price) :
+		bookNo(s), sold(cnt), revebue(cnt* price) {}
+	//其余构造函数全部委托给另一个构造函数
+	Sales_data() :Sales_data("", 0, 0) {}
+	Sales_data(string s) :Sales_data(s, 0, 0) {}
+	Sales_data(string s, double price) :Sales_data(s, 0, price) {}
+};
+```
+   
 

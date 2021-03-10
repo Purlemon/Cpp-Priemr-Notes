@@ -90,5 +90,20 @@ public:
 	Sales_data(string s, double price) :Sales_data(s, 0, price) {}
 };
 ```
-   
-
+### 隐式的类型转换
+- 如果构造函数**只接受一个实参**，则它实际上定义了转换为此类类型的**隐式转换机制**。这种构造函数又叫**转换构造函数**
+- 编译器只会自动地执行`仅一步`隐式类型转换。
+- 抑制构造函数定义的隐式转换：
+  - 将构造函数声明为`explicit`加以阻止，只对一个实参的构造函数有效。
+  - 只能在类内声明时使用`explicit`，在类外部定义时不应重复。
+  - `explicit`构造函数只能用于直接初始化，不能用于拷贝形式的初始化。
+  - 可用`static_cast`强制转换使用了`explicit`的构造函数
+ ```cpp
+class Sales_data {
+public:
+	Sales_data(): bookNo(""), sold(0) {}
+	explicit Sales_data(string s) : bookNo(s), sold(0){}
+	explicit Sales_data(double price) : bookNo(""), sold(price){}
+	Sales_data(string s, double price) :Sales_data(s, price) {}
+};
+```

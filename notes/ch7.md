@@ -138,6 +138,8 @@ Data vall = {0, "Anna"};
 
 - 非`static`数据成员存在于类类型的每个对象中，`static`数据成员独立于该类的任意对象而存在。
 - 每个`static`数据成员是与类关联的对象，并不与该类的对象相关联。
+- 不能声明为`const`,不能使用`this`指针。
+- 类型可以是它所属的类类型（普通成员不能）。
 - 声明：
   - 声明之前加上关键词`static`。
 - 使用：
@@ -147,5 +149,5 @@ Data vall = {0, "Anna"};
 - 定义：
   - 在类外部定义时不用加`static`。
 - 初始化：
-  - 通常不在类的内部初始化，而是在定义时在外部进行初始化，如 `double Account::interestRate = initRate();`
+  - 通常不在类的内部初始化，而是在定义时**在外部进行初始化**，如 `double Account::interestRate = initRate();`
   - 如果一定要在类内部定义，则要求必须是字面值常量类型的`constexpr`，`static constexpr int period = 30`

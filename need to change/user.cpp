@@ -2178,12 +2178,14 @@ void AlterRole(AlterRoleStmt* stmt)
         CheckLockPrivilege(roleid, tuple, is_opradmin);
 
         if (stmt->lockstatus == LOCK_ROLE) {
+            ((Form_pg_authid)GETSTRUCT(tuple))->locktime_end = stmt->locktime_end;/*加锁就把这玩意赋给传过来的locktime_end*/
             if (t_thrd.postmaster_cxt.HaShmData->current_mode == STANDBY_MODE) {
                 UpdateFailCountToHashTable(roleid, 0, true);
             } else {
                 TryLockAccount(roleid, 0, true);
             }
         } else {
+            ((Form_pg_authid)GETSTRUCT(tuple))->locktime_end = 0;/*解锁就把这玩意置0*/
             if (t_thrd.postmaster_cxt.HaShmData->current_mode == STANDBY_MODE) {
                 UnlockAccountToHashTable(roleid, true, false);
             } else {

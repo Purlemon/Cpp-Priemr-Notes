@@ -503,7 +503,7 @@ static void parameter_check_execute_direct(const char* query);
 %type <list>	row explicit_row implicit_row type_list array_expr_list
 %type <node>	case_expr case_arg when_clause case_default
 %type <list>	when_clause_list
-%type <ival>	sub_type
+%type <ival>	sub_type opt_locktime
 %type <node>	ctext_expr
 %type <value>	NumericOnly
 %type <list>	NumericOnly_list
@@ -1116,6 +1116,10 @@ opt_with:	WITH									{}
 			| /*EMPTY*/								{}
 		;
 
+opt_locktime:LOCKTIME								{ $$ = $7; }
+			| /*EMPTY*/								{ $$ = NIL; }
+		;
+
 /*
  * Options for CREATE ROLE and ALTER ROLE (also used by CREATE/ALTER USER
  * for backwards compatibility).  Note: the only option required by SQL99
@@ -1490,13 +1494,17 @@ AlterUserStmt:
 					n->lockstatus = DO_NOTHING;
 					$$ = (Node *)n;
 				 }
-			| ALTER USER RoleId opt_with ACCOUNT LOCK_P
+			| ALTER USER RoleId opt_with ACCOUNT LOCK_P opt_locktime
 				{
 					AlterRoleStmt *n = makeNode(AlterRoleStmt);
 					n->role = $3;
 					n->action = +1;	/* add, if there are members */
 					n->options = NIL;
 					n->lockstatus = LOCK_ROLE;
+					if($7 && $7>0)
+					{
+						n->locktime_end = $7 + time(0);
+					}
 					$$ = (Node *)n;
 				}
 			| ALTER USER RoleId opt_with ACCOUNT UNLOCK

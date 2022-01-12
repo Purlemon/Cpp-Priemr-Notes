@@ -10,6 +10,7 @@
   - 第7章：[类](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/notes/ch7.md)
 - **第 II 部分：C++标准库**  
   - 第8章：[IO库](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/notes/ch8.md)  
+  - 第9章：[顺序容器](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/notes/ch9.md)  
   - 第11章：[关联容器](https://github.com/Purlemon/Cpp-Priemr-Notes/blob/main/notes/ch11.md)
 ## 参考
 - [《C++ Primer 中文版（第 5 版）》学习仓库，包括笔记和课后练习答案](https://github.com/applenob/Cpp_Primer_Practice)

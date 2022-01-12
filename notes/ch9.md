@@ -93,8 +93,13 @@
 - `forward_list`有自己专有版本的`insert`和`emplace`。
 - `forward_list`不支持`push_back`和`emplace_back`。
 - 当我们用一个对象去初始化容器或者将对象插入到容器时，实际上放入的是对象的拷贝。
-- `emplace`开头的函数是新标准引入的，这些操作是构造而不是拷贝元素。
-- 传递给`emplace`的参数必须和元素类型的构造函数相匹配。
+- 传递给`emplace`的参数必须和元素类型的构造函数相匹配，将会直接在内存中构造对象。
+```cpp
+list<string> lst;
+auto iter = lst.begin();
+while (cin >> word)
+    iter = lst.insert(iter, word);  // 等价于push_front
+```
 
 ### 访问元素
 

@@ -218,7 +218,8 @@ while (cin >> word)
 | `c.reverse(n)` | 分配至少能容纳`n`个元素的内存空间 |
 
 - `shrink_to_fit`只适用于`vector`、`string`和`deque`
-- `capacity`和`reverse`只适用于`vector`和`string`。
+- `shrink_to_fit`只是一个请求，标准库不保证退还内存
+- `capacity`和`reverse`只适用于`vector`和`string`
 
 ## 额外的string操作
 
